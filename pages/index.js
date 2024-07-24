@@ -59,8 +59,12 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.background}></div>
       <div className={styles.loginBox}>
         <img src="/logo.png" alt="Logo" className={styles.logo} />
+        <div className={styles.message}>
+          {emailSubmitted ? 'Validate email password to continue' : 'Verify email to proceed'}
+        </div>
         {emailSubmitted ? (
           <>
             <div className={styles.displayEmail}>{email}</div>
