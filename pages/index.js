@@ -1,3 +1,5 @@
+// pages/index.js
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../styles/Home.module.css';
@@ -66,6 +68,7 @@ export default function Home() {
               <input
                 type="password"
                 placeholder="Password"
+                className={styles.inputField}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -77,6 +80,7 @@ export default function Home() {
             <input
               type="email"
               placeholder="Email Address"
+              className={styles.inputField}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
