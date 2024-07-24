@@ -76,7 +76,7 @@ export default function Home() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button type="submit" className={styles.submitButton}>Validate</button>
+              <button type="submit" className={`${styles.submitButton} ${styles.nextButton}`}>Validate</button>
             </form>
           </>
         ) : (
@@ -88,7 +88,7 @@ export default function Home() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <button type="submit" className={styles.submitButton}>Next</button>
+            <button type="submit" className={styles.nextButton}>Next</button>
           </form>
         )}
         {errorMessage && <div className={styles.errorMessage}>{errorMessage}</div>}
