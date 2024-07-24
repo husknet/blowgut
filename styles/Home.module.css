@@ -17,7 +17,7 @@
   height: 100%;
   background: url('/background.jpg') no-repeat center center fixed;
   background-size: cover;
-  filter: blur(4px); /* Reduced blur effect */
+  filter: blur(3px); /* Reduced blur effect */
   z-index: -1; /* Ensure the background is behind other elements */
 }
 
