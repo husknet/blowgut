@@ -1,5 +1,12 @@
 /* styles/Home.module.css */
 
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .container {
   height: 100vh;
   display: flex;
@@ -17,7 +24,7 @@
   height: 100%;
   background: url('/background.jpg') no-repeat center center fixed;
   background-size: cover;
-  filter: blur(8px); /* Blur effect */
+  filter: blur(4px); /* Reduced blur effect */
   z-index: -1; /* Ensure the background is behind other elements */
 }
 
@@ -57,7 +64,7 @@
   border-radius: 5px;
 }
 
-.submitButton {
+.submitButton, .nextButton {
   background-color: darkblue;
   color: white;
   padding: 10px 20px;
@@ -65,9 +72,10 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  margin-top: 20px; /* Spacing below input fields */
 }
 
-.submitButton:hover {
+.submitButton:hover, .nextButton:hover {
   background-color: navy;
 }
 
